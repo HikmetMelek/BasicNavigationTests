@@ -12,7 +12,7 @@ public class BrowserFactory {
    public static WebDriver getDriver(String browserType) {
         WebDriver driver = null;
         String osName= System.getProperty("os.name");
-       //System.out.println(osName);
+       System.out.println(osName);
        if (osName.toLowerCase().startsWith("windows") && browserType.equalsIgnoreCase("safari")) {
            return null;
        }else if (osName.toLowerCase().startsWith("mac") && browserType.equalsIgnoreCase("edge")) {
@@ -35,8 +35,6 @@ public class BrowserFactory {
                    WebDriverManager.safaridriver().setup();
                    driver = new SafariDriver();
                    break;
-               default:
-                   return null;
            }
 
            return driver;
