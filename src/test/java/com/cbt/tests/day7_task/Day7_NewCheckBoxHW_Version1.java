@@ -1,4 +1,4 @@
-package com.cbt.tests;
+package com.cbt.tests.day7_task;
 
 import com.cbt.utilities.BrowserFactory;
 import org.openqa.selenium.By;
@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Day7_NewCheckBoxHW {
+public class Day7_NewCheckBoxHW_Version1 {
 /*
 1. Go to
         http://secure.smartbearsoftware.com/samples/TestComplete12/WebOrders/Login.aspx
@@ -41,13 +41,13 @@ public class Day7_NewCheckBoxHW {
 
         driver.findElement(By.id("ctl00_MainContent_btnUncheckAll")).click(); //4
         Assert.assertFalse(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl02']")).isSelected(), "Paul checkbox unselected");
-        Assert.assertFalse(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl02']")).isSelected(), "Mark checkbox unselected");
-        Assert.assertFalse(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl02']")).isSelected(), "Steve checkbox unselected");
-        Assert.assertFalse(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl02']")).isSelected());
-        Assert.assertFalse(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl02']")).isSelected());
-        Assert.assertFalse(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl02']")).isSelected());
-        Assert.assertFalse(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl02']")).isSelected());
-        Assert.assertFalse(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl02']")).isSelected());
+        Assert.assertFalse(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl03']")).isSelected(), "Mark checkbox unselected");
+        Assert.assertFalse(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl04']")).isSelected(), "Steve checkbox unselected");
+        Assert.assertFalse(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl05']")).isSelected());
+        Assert.assertFalse(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl06']")).isSelected());
+        Assert.assertFalse(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl07']")).isSelected());
+        Assert.assertFalse(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl08']")).isSelected());
+        Assert.assertFalse(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl09']")).isSelected());
         Thread.sleep(1000);
 
         driver.findElement(By.xpath("//input[contains(@id,'orderGrid_ctl06')]")).click(); //5
