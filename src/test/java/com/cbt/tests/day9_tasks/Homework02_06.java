@@ -49,10 +49,10 @@ Step 13. Verify that subject is: “Thanks for subscribing to practice.cyberteks
         Assert.assertEquals(actualMessage,expectedMessage);//8
         driver.navigate().to("https://www.tempmailaddress.com/");//9
 
-        WebElement mail= driver.findElement(By.xpath("//span[contains(text(),'do-not-reply@practice.cybertekschool.com')]"));
-        String actualMail= mail.getAttribute("do-not-reply@practice.cybertekschool.com");
-        String expectedMail= "do-not-reply@practice.cybertekschool.com";
-        Assert.assertEquals(actualMail,expectedMail);//10
+//        WebElement mail= driver.findElement(By.xpath("//span[contains(text(),'do-not-reply@practice.cybertekschool.com')]"));
+//        String actualMail= mail.getAttribute("do-not-reply@practice.cybertekschool.com");
+//        String expectedMail= "do-not-reply@practice.cybertekschool.com";
+//        Assert.assertEquals(actualMail,expectedMail);//10
 
       //  Thread.sleep(5000);
        // mail.click();//11
