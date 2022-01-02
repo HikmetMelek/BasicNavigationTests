@@ -30,9 +30,9 @@ public class Day7_NewCheckBoxHW_Version1 {
 
         driver.findElement(By.id("ctl00_MainContent_btnCheckAll")).click();//3
         Assert.assertTrue(driver.findElement(By.xpath("//input[contains(@id,'orderGrid_ctl02')]")).isSelected(), "verify Paul checked");
-        Assert.assertTrue(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl03']")).isSelected(), "verify Mark checked");
-        Assert.assertTrue(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl04']")).isSelected(), "verify Steve checked");
-        Assert.assertTrue(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl05']")).isSelected());
+        Assert.assertTrue(driver.findElement(By.cssSelector("[id*='orderGrid_ctl03']")).isSelected(), "verify Mark checked");
+        Assert.assertTrue(driver.findElement(By.cssSelector("[id*='orderGrid_ctl04']")).isSelected(), "verify Steve checked");
+        Assert.assertTrue(driver.findElement(By.cssSelector("[id*='orderGrid_ctl05']")).isSelected());
         Assert.assertTrue(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl06']")).isSelected());
         Assert.assertTrue(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl07']")).isSelected());
         Assert.assertTrue(driver.findElement(By.cssSelector("input[id*='orderGrid_ctl08']")).isSelected());

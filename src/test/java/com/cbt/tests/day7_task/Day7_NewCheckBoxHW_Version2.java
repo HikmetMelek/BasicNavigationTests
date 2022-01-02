@@ -33,7 +33,7 @@ public class Day7_NewCheckBoxHW_Version2 {
 
         driver.findElement(By.id("ctl00_MainContent_btnCheckAll")).click();//3 //click 'Check All' box
 
-        List<WebElement> checkBoxes= driver.findElements(By.xpath("//div/table/tbody/tr/td[1]/input"));//3
+        List<WebElement> checkBoxes= driver.findElements(By.cssSelector("[type='checkbox']"));//3
         for (WebElement each: checkBoxes) {
             Assert.assertTrue(each.isSelected());
         }
@@ -41,7 +41,7 @@ public class Day7_NewCheckBoxHW_Version2 {
         Thread.sleep(1000);
 
         driver.findElement(By.id("ctl00_MainContent_btnUncheckAll")).click(); //4
-        checkBoxes= driver.findElements(By.xpath("//div/table/tbody/tr/td[1]/input"));
+        checkBoxes= driver.findElements(By.cssSelector("[type='checkbox']"));
         for (WebElement each: checkBoxes) {
             Assert.assertFalse(each.isSelected());
         }
