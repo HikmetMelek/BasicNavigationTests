@@ -16,6 +16,8 @@ public class Homework2_01_05 {
     @BeforeMethod
     public void setUp(){
         driver= BrowserFactory.getDriver("chrome");
+        driver.get("https://practice-cybertekschool.herokuapp.com");//1
+        driver.manage().window().maximize();
     }
 
     @AfterMethod
@@ -32,7 +34,7 @@ Step 2. Click on “Registration Form”
 Step 3. Enter “wrong_dob” into date of birth input box.
 Step 4. Verify that warning message is displayed: “The date of birth is not valid”
          */
-        driver.get("https://practice-cybertekschool.herokuapp.com");//1
+
         driver.findElement(By.linkText("Registration Form")).click();//2
         driver.findElement(By.xpath("//input[@name='birthday']")).sendKeys("12/05");//3
         String expectedText= "The date of birth is not valid";
@@ -49,7 +51,7 @@ Step 1. Go to “https://practice-cybertekschool.herokuapp.com”
 Step 2. Click on “Registration Form”
 Step 3. Verify that following options for programming languages are displayed: c++, java,JavaScript
          */
-        driver.get("https://practice-cybertekschool.herokuapp.com");//1
+
         driver.findElement(By.linkText("Registration Form")).click();//2
         Assert.assertTrue(driver.findElement(By.xpath("//*[.='C++']")).isDisplayed(), "C++ is not displayed"); //3
         Assert.assertTrue(driver.findElement(By.xpath("//*[.='Java']")).isDisplayed(), "Java is not displayed"); //3
@@ -65,7 +67,7 @@ Step 2. Click on “Registration Form”
 Step 3. Enter only one alphabetic character into first name input box.
 Step 4. Verify that warning message is displayed: “first name must be more than 2 and less than 64 characters long”
          */
-        driver.get("https://practice-cybertekschool.herokuapp.com");//1
+
         driver.findElement(By.linkText("Registration Form")).click();//2
         driver.findElement(By.cssSelector("input[name='firstname']")).sendKeys("A");//3
         String expectedWarning= "first name must be more than 2 and less than 64 characters long";
@@ -83,7 +85,7 @@ Step 2. Click on “Registration Form”
 Step 3. Enter only one alphabetic character into last name input box.
 Step 4. Verify that warning message is displayed:“The last name must be more than 2 and less than 64 characters long”
          */
-        driver.get("https://practice-cybertekschool.herokuapp.com");//1
+
         driver.findElement(By.linkText("Registration Form")).click();//2
         driver.findElement(By.cssSelector("input[name='lastname']")).sendKeys("S");//3
         String expectedWarning= "The last name must be more than 2 and less than 64 characters long";
@@ -111,7 +113,7 @@ displayed: “You've successfully completed registration!”
 Note: for using dropdown, please refer to the documentation: https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/support/ui/
 Select.html or, please watch short video about drop-downs that is posted on canvas.
          */
-        driver.get("https://practice-cybertekschool.herokuapp.com");//1
+
         driver.findElement(By.linkText("Registration Form")).click();//2
         driver.findElement(By.cssSelector("input[name='firstname']")).sendKeys("Nicole");//3
         driver.findElement(By.cssSelector("input[name='lastname']")).sendKeys("Sun");//4
