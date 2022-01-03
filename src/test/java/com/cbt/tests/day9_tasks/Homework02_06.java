@@ -7,11 +7,29 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
 public class Homework02_06 {
+
+    WebDriver driver;
+
+    @BeforeMethod
+    public void setUp(){
+        driver= BrowserFactory.getDriver("chrome");
+        driver.get("https://www.tempmailaddress.com/");//1
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    }
+
+//    @AfterMethod
+//    public void tearDown() throws InterruptedException {
+//        Thread.sleep(2000);
+//        driver.quit();
+//    }
     @Test
     public void test() throws InterruptedException {
         /*
@@ -30,15 +48,9 @@ Step 12. Verify that email is from: “do-not-reply@practice.cybertekschool.com�
 Step 13. Verify that subject is: “Thanks for subscribing to practice.cybertekschool.com!”
          */
 
-        WebDriver driver= BrowserFactory.getDriver("chrome");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-        driver.get("https://www.tempmailaddress.com/");//1
-    //    driver.switchTo().frame("google_esf");
         driver.findElement(By.cssSelector("a[href='#copy']")).click();//2
         String fakeEmail=driver.findElement(By.cssSelector("span[class='animace']")).getText();//2
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.get("https://practice-cybertekschool.herokuapp.com");//3
         driver.findElement(By.linkText("Sign Up For Mailing List")).click();//4
         driver.findElement(By.cssSelector("input[name='full_name']")).sendKeys("Nicole");//5
@@ -50,12 +62,15 @@ Step 13. Verify that subject is: “Thanks for subscribing to practice.cyberteks
         driver.navigate().to("https://www.tempmailaddress.com/");//9
 
 //        WebElement mail= driver.findElement(By.xpath("//span[contains(text(),'do-not-reply@practice.cybertekschool.com')]"));
-//        String actualMail= mail.getAttribute("do-not-reply@practice.cybertekschool.com");
+//        WebDriverWait wait= new WebDriverWait(driver,59);
+//        wait.until(ExpectedConditions.elementToBeClickable(mail));
+//        String actualMail= mail.getText();
+//        System.out.println("actualMail = " + actualMail);
 //        String expectedMail= "do-not-reply@practice.cybertekschool.com";
 //        Assert.assertEquals(actualMail,expectedMail);//10
 
-      //  Thread.sleep(5000);
-       // mail.click();//11
+
+     //   mail.click();//11
 
 
 
