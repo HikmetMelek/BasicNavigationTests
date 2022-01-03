@@ -25,11 +25,11 @@ public class Homework02_06 {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
-//    @AfterMethod
-//    public void tearDown() throws InterruptedException {
-//        Thread.sleep(2000);
-//        driver.quit();
-//    }
+    @AfterMethod
+    public void tearDown() throws InterruptedException {
+        Thread.sleep(2000);
+        driver.quit();
+    }
     @Test
     public void test() throws InterruptedException {
         /*
@@ -61,23 +61,24 @@ Step 13. Verify that subject is: “Thanks for subscribing to practice.cyberteks
         Assert.assertEquals(actualMessage,expectedMessage);//8
         driver.navigate().to("https://www.tempmailaddress.com/");//9
 
-//        WebElement mail= driver.findElement(By.xpath("//span[contains(text(),'do-not-reply@practice.cybertekschool.com')]"));
-//        WebDriverWait wait= new WebDriverWait(driver,59);
-//        wait.until(ExpectedConditions.elementToBeClickable(mail));
-//        String actualMail= mail.getText();
-//        System.out.println("actualMail = " + actualMail);
-//        String expectedMail= "do-not-reply@practice.cybertekschool.com";
-//        Assert.assertEquals(actualMail,expectedMail);//10
+        WebElement mail= driver.findElement(By.xpath("//*[@id='schranka']/tr[1]/td[1]"));
+        WebDriverWait wait= new WebDriverWait(driver,59);
+        wait.until(ExpectedConditions.visibilityOf(mail));
+        String actualMail= mail.getText().trim();
+        System.out.println("actualMail = " + actualMail);
+        String expectedMail= "do-not-reply@practice.cybertekschool.com";
+        Assert.assertEquals(actualMail,expectedMail);//10
 
+        mail.click();//11
 
-     //   mail.click();//11
+        String actualFrom= driver.findElement(By.id("odesilatel")).getText().trim();//12
+        String expectedFrom="do-not-reply@practice.cybertekschool.com";//12
+        Assert.assertEquals(actualFrom,expectedFrom);//12
 
+        String actualSubject= driver.findElement(By.id("predmet")).getText().trim();//13
+        String expectedSubject="Thanks for subscribing to practice.cybertekschool.com!";//13
+        Assert.assertEquals(actualSubject,expectedSubject);//13
 
-
-
-
-
-        Thread.sleep(2000);
-     //   driver.quit();
     }
+
 }
