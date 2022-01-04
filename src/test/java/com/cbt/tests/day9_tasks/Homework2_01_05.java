@@ -134,6 +134,7 @@ Select.html or, please watch short video about drop-downs that is posted on canv
         jobDropdown.selectByVisibleText("Designer");
 
         driver.findElement(By.cssSelector("#inlineCheckbox2")).click();//12
+   //     System.out.println(driver.findElement(By.cssSelector("#inlineCheckbox2")).getAttribute("outerHTML"));
         driver.findElement(By.cssSelector("#wooden_spoon")).click();//13
 
         String expectedMessage= "You've successfully completed registration!"; //14
