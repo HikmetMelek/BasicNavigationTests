@@ -61,7 +61,8 @@ Step 13. Verify that subject is: “Thanks for subscribing to practice.cyberteks
         Assert.assertEquals(actualMessage,expectedMessage);//8
         driver.navigate().to("https://www.tempmailaddress.com/");//9
 
-        WebElement mail= driver.findElement(By.xpath("//*[@id='schranka']/tr[1]/td[1]"));
+        WebElement mail= driver.findElement(By.xpath("//*[@id='schranka']/tr[1]/td[1]"));//String receivedText = driver.findElement(By.xpath("//*[contains(.,'do-not-reply')]")).getText();
+                                                                                                         // Assert.assertTrue(receivedText.contains("do-not-reply@practice.cybertekschool.com"));
         WebDriverWait wait= new WebDriverWait(driver,59);
         wait.until(ExpectedConditions.visibilityOf(mail));
         String actualMail= mail.getText().trim();
