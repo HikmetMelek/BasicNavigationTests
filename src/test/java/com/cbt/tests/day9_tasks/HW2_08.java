@@ -12,7 +12,8 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class HW2_07 {
+public class HW2_08 {
+
     WebDriver driver;
 
     @BeforeMethod
@@ -23,37 +24,29 @@ public class HW2_07 {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
-        @AfterMethod
+    @AfterMethod
     public void tearDown() throws InterruptedException {
         Thread.sleep(1000);
         driver.quit();
     }
     @Test
     public void test() throws InterruptedException {
-/*
+          /*
 Step 1. Go to “https://practice-cybertekschool.herokuapp.com”
-Step 2. And click on “File Upload".
-Step 3. Upload any file with .txt extension from your
-computer.
-Step 4. Click “Upload” button.
-Step 5. Verify that subject is: “File Uploaded!”
-Step 6. Verify that uploaded file name is displayed
- */
-        driver.findElement(By.linkText("File Upload")).click();//2
-        WebElement chosenFile = driver.findElement(By.id("file-upload"));//3
-        chosenFile.sendKeys("C:\\Users\\Melek\\Desktop\\file.txt");//3
-        Thread.sleep(1000);
-        driver.findElement(By.id("file-submit")).click();//4
-        String actual= driver.findElement(By.cssSelector("div[class='example']>h3")).getText();
-        Assert.assertEquals(actual,"File Uploaded!");//5
+Step 2. And click on “Autocomplete”.
+Step 3. Enter “United States of America” into country input box.
+Step 4. Verify that following message is displayed:“You selected: United States of America"
+     */
+        WebElement autocompleteLink= driver.findElement(By.linkText("Autocomplete"));
+        JavascriptExecutor jse= (JavascriptExecutor) driver;
+        jse.executeScript("arguments[0].click();",autocompleteLink);
 
-        String fileName= driver.findElement(By.id("uploaded-files")).getText();
-        Assert.assertEquals(fileName,"file.txt");
+        driver.findElement(By.id("myCountry")).sendKeys("United States of America");
+        driver.findElement(By.cssSelector("input[type='button']")).click();
 
-
-
-
-
+        String actualResult= driver.findElement(By.id("result")).getText();
+        String expectedResult= "You selected: United States of America";
+        Assert.assertEquals(actualResult,expectedResult);
 
     }
 }
