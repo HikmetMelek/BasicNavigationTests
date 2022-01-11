@@ -28,7 +28,7 @@ public class Homework02_06 {
     @AfterMethod
     public void tearDown() throws InterruptedException {
         Thread.sleep(2000);
-        driver.quit();
+      //  driver.quit();
     }
     @Test
     public void test() throws InterruptedException {
@@ -63,8 +63,8 @@ Step 13. Verify that subject is: “Thanks for subscribing to practice.cyberteks
 
         WebElement mail= driver.findElement(By.xpath("//*[@id='schranka']/tr[1]/td[1]"));//String receivedText = driver.findElement(By.xpath("//*[contains(.,'do-not-reply')]")).getText();
                                                                                                          // Assert.assertTrue(receivedText.contains("do-not-reply@practice.cybertekschool.com"));
-        WebDriverWait wait= new WebDriverWait(driver,59);
-        wait.until(ExpectedConditions.visibilityOf(mail));
+    //    WebDriverWait wait= new WebDriverWait(driver,59);
+   //     wait.until(ExpectedConditions.visibilityOf(mail));
         String actualMail= mail.getText().trim();
         System.out.println("actualMail = " + actualMail);
         String expectedMail= "do-not-reply@practice.cybertekschool.com";
