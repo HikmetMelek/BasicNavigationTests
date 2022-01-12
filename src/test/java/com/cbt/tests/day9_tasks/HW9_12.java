@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -52,19 +52,35 @@ public class HW9_12 {
 
 
     @Test
-    public void test9_10_11_12Loop() throws InterruptedException { // Ahmet solution
+    public void test2() throws InterruptedException { // Ahmet solution
 
-        List<WebElement> elements = driver.findElements(By.xpath("//*[@id=\"content\"]/div/ul/li/a"));
+        List<WebElement> elements = driver.findElements(By.xpath("//*[@id='example']/div//a"));
         System.out.println(elements.size());
 
         for (int i = 0; i < elements.size(); i++) {
-            WebElement each = driver.findElement(By.xpath("(//*[@id=\"content\"]/div/ul/li/a)[" + (i + 1) + "]"));
+            WebElement each = driver.findElement(By.xpath("(//*[@id='example']/div//a)[" + (i + 1) + "]"));
             String control = each.getText();
             each.click();
-            String actual = driver.findElement(By.xpath("//p")).getText();
+            String actual = driver.findElement(By.xpath("//h3/../p")).getText();
             Assert.assertTrue(actual.contains(control));
             driver.navigate().back();
         }
+    }
+
+
+   @DataProvider(name = "status_codes")
+    public Object[][] provider(){
+        return new Object[][] {{"200"}, {"301"}, {"404"}, {"500"}};
+    }
+    @Test(dataProvider = "status_codes")
+    public void test3(String linkValue){
+
+        driver.findElement(By.linkText(linkValue)).click();
+        String text = driver.findElement(By.xpath("//h3/../p")).getText();
+        String[] textLine = text.split("\n");
+        String expectedTextLine = "This page returned a "+linkValue+" status code.";
+        Assert.assertEquals(expectedTextLine,textLine[0]);
+
     }
 
 }
