@@ -2,11 +2,6 @@ package com.cbt.tests.reviewWeekTasks;
 
 import com.cbt.pages.amazonPages.ProductPage;
 import com.cbt.tests.TestBase_Amazon;
-import com.cbt.utilities.ConfigurationReader;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Task1_Amazon extends TestBase_Amazon {
