@@ -3,6 +3,8 @@ package com.cbt.tests.reviewWeekTasks;
 import com.cbt.pages.amazonPages.ProductPage;
 import com.cbt.tests.TestBase_Amazon;
 import com.cbt.utilities.ConfigurationReader;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -23,68 +25,21 @@ public class Task1_Amazon extends TestBase_Amazon {
 
     @Test
     public void amazon() throws InterruptedException {
-        searchForHat();
-        selectHat();
-        changeQuantity("firstSelectedQty");
-        addToCart();
-        goToCart();
-        Verify_QtyAndPrice("firstSelectedQty");
-        changeQuantity("changedQty");
-        Verify_QtyAndPrice("changedQty");
+        productPage.searchForHat();
+        productPage.selectHat();
+        productPage.changeQuantity("firstSelectedQty");
+        productPage.addToCart();
+        productPage.goToCart();
+        productPage.Verify_QtyAndPrice("firstSelectedQty");
+        productPage.changeQuantity("changedQty");
+        productPage.Verify_QtyAndPrice("changedQty");
 
     }
 
 
-    public void searchForHat() {
-
-        productPage.searchInputBox.sendKeys(ConfigurationReader.get("productHat"));
-        productPage.searchButton.click();
-
-    }
-
-    public void selectHat() {
-        productPage.aHat.click();
-    }
-
-    public void changeQuantity(String quantity) {
-        select = new Select(productPage.dropDownOfQty);
-        select.selectByVisibleText(ConfigurationReader.get(quantity));
-    }
-
-    public void addToCart() {
-        productPage.addToCartButton.click();
-    }
-
-    public void goToCart() {
-        productPage.Cart.click();
-    }
-
-    public void Verify_QtyAndPrice(String quantity) {
-        String qty = productPage.qtyOnCartPage.getText();
-
-        int actual_qty = Integer.parseInt(qty);
-        System.out.println(actual_qty);
-        Assert.assertEquals(qty,ConfigurationReader.get(quantity));
 
 
-        String hatPrice = productPage.priceOfHat.getText();
-        hatPrice = hatPrice.substring(1);
 
-        double actualOneHatPrice = Double.parseDouble(hatPrice);
-        System.out.println(actualOneHatPrice);
-
-        double totalPriceOfHat = actual_qty * actualOneHatPrice;
-        String expectedTotalPriceOfHat= Double.toString(totalPriceOfHat);
-
-        String totalPrice = productPage.totalPrice.getText();
-        totalPrice = totalPrice.substring(1);
-        double actualTotalPrice = Double.parseDouble(totalPrice);
-        System.out.println(actualTotalPrice);
-
-        Assert.assertEquals(totalPrice, expectedTotalPriceOfHat);
-
-
-    }
 
 
 

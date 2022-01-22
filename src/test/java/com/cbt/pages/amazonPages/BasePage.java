@@ -1,5 +1,6 @@
 package com.cbt.pages.amazonPages;
 
+import com.cbt.utilities.ConfigurationReader;
 import com.cbt.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +21,14 @@ public abstract class BasePage {
     @FindBy(id = "nav-cart")
     public WebElement Cart;
 
+    public void searchForHat() {
+        searchInputBox.sendKeys(ConfigurationReader.get("productHat"));
+        searchButton.click();
 
+    }
+
+    public void goToCart() {
+        Cart.click();
+    }
 
 }
