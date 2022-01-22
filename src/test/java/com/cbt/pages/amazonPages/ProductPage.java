@@ -20,9 +20,6 @@ public class ProductPage extends BasePage{
     @FindBy(id = "quantity")
     public WebElement dropDownOfQty;
 
-    @FindBy(xpath = "//*[@id=\"a-autoid-0-announce\"]/span[2]")
-    public WebElement selectedHatOfQuantity;
-
     @FindBy(css = "p.a-spacing-mini>span")
     public WebElement priceOfHat;
 

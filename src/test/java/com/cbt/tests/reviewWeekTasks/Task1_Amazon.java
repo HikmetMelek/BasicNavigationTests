@@ -25,12 +25,10 @@ public class Task1_Amazon extends TestBase {
     public void amazon() throws InterruptedException {
         searchForHat();
         selectAndAddHat();
-        goToCartAndVerify_QtyAndPrice();
+        goToCart();
+        Verify_QtyAndPrice();
         reduceQuantity();
         verifyChanged_QtyAndPrice();
-
-
-
 
 
     }
@@ -48,44 +46,55 @@ public class Task1_Amazon extends TestBase {
         Thread.sleep(3000);
         select= new Select(productPage.dropDownOfQty);
         Thread.sleep(2000);
-        select.selectByVisibleText("2");
+        select.selectByVisibleText(ConfigurationReader.get("firstSelectedQty"));
         productPage.addToCartButton.click();
     }
 
-    public void goToCartAndVerify_QtyAndPrice(){
+    public void goToCart(){
         productPage.Cart.click();
-        String actual_qty= productPage.selectedHatOfQuantity.getText();
-        int qty2= Integer.parseInt(actual_qty);
-        System.out.println(qty2);
-        Assert.assertEquals(actual_qty,"2", "verify that qty:2");
+
+    }
+
+    public void Verify_QtyAndPrice(){
+        String qty= productPage.qtyOnCartPage.getText();
+        String[] textOfQty= qty.split(" ");
+        textOfQty[1]=textOfQty[1].substring(1,2);
+
+        int actual_qty= Integer.parseInt(textOfQty[1]);
+        System.out.println(actual_qty);
+
+        Assert.assertEquals(textOfQty,ConfigurationReader.get("firstSelectedQty"), "verify that qty:2");
 
         String hatPrice= productPage.priceOfHat.getText();
         hatPrice= hatPrice.substring(1);
+
         double actualOneHatPrice= Double.parseDouble(hatPrice);
         System.out.println(actualOneHatPrice);
 
-        double expectedPriceOfTwoHat= qty2*actualOneHatPrice;
+        double expectedPriceOfHat= actual_qty*actualOneHatPrice;
 
         String totalPrice=productPage.totalPrice.getText();
         totalPrice=totalPrice.substring(1);
         double actualTotalPrice= Double.parseDouble(totalPrice);
-        Assert.assertEquals(actualTotalPrice,expectedPriceOfTwoHat);
+
+        Assert.assertEquals(actualTotalPrice,expectedPriceOfHat);
         System.out.println(actualTotalPrice);
+
     }
 
     public void reduceQuantity() throws InterruptedException {
         select= new Select(productPage.dropDownOfQty);
         Thread.sleep(2000);
-        select.selectByVisibleText("1");
+        select.selectByVisibleText(ConfigurationReader.get("changedQty"));
     }
 
     public void verifyChanged_QtyAndPrice(){
-        String actual_qty= productPage.qtyOnCartPage.getText();
-        String[] qty= actual_qty.split(" ");
-        qty[1]=qty[1].substring(1,2);
-        int qty1= Integer.parseInt(qty[1]);
-        System.out.println(qty1);
-        Assert.assertEquals(qty1,"1", "verify that qty:1");
+        String qty= productPage.qtyOnCartPage.getText();
+        String[] textOfQty= qty.split(" ");
+        textOfQty[1]=textOfQty[1].substring(1,2);
+        int actual_qty= Integer.parseInt(textOfQty[1]);
+        System.out.println(actual_qty);
+        Assert.assertEquals(textOfQty,ConfigurationReader.get("changedQty"), "verify that qty:1");
 
     }
 
