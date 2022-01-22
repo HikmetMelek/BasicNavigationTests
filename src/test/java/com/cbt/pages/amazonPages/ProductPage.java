@@ -26,7 +26,8 @@ public class ProductPage extends BasePage{
     @FindBy(xpath = "//span[@id='sc-subtotal-amount-activecart']/span")
     public WebElement totalPrice;
 
-    @FindBy(id = "sc-subtotal-label-activecart")
+    //@FindBy(id = "sc-subtotal-label-activecart")
+    @FindBy(css = "span[class='a-dropdown-prompt']")
     public WebElement qtyOnCartPage;
 
 

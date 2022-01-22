@@ -1,13 +1,13 @@
 package com.cbt.tests.reviewWeekTasks;
 
 import com.cbt.pages.amazonPages.ProductPage;
-import com.cbt.tests.TestBase;
+import com.cbt.tests.TestBase_Amazon;
 import com.cbt.utilities.ConfigurationReader;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Task1_Amazon extends TestBase {
+public class Task1_Amazon extends TestBase_Amazon {
 /*
 1.	Go to https://www.amazon.com
 2.	Search for "hats for men" (Call from Configuration.properties file)
@@ -24,77 +24,65 @@ public class Task1_Amazon extends TestBase {
     @Test
     public void amazon() throws InterruptedException {
         searchForHat();
-        selectAndAddHat();
+        selectHat();
+        changeQuantity("firstSelectedQty");
+        addToCart();
         goToCart();
-        Verify_QtyAndPrice();
-        reduceQuantity();
-        verifyChanged_QtyAndPrice();
-
+        Verify_QtyAndPrice("firstSelectedQty");
+        changeQuantity("changedQty");
+        Verify_QtyAndPrice("changedQty");
 
     }
 
 
-     public void searchForHat() throws InterruptedException {
-        driver.get(ConfigurationReader.get("url1"));
+    public void searchForHat() {
+
         productPage.searchInputBox.sendKeys(ConfigurationReader.get("productHat"));
         productPage.searchButton.click();
-        Thread.sleep(2000);
+
     }
 
-    public void selectAndAddHat() throws InterruptedException {
+    public void selectHat() {
         productPage.aHat.click();
-        Thread.sleep(3000);
-        select= new Select(productPage.dropDownOfQty);
-        Thread.sleep(2000);
-        select.selectByVisibleText(ConfigurationReader.get("firstSelectedQty"));
+    }
+
+    public void changeQuantity(String quantity) {
+        select = new Select(productPage.dropDownOfQty);
+        select.selectByVisibleText(ConfigurationReader.get(quantity));
+    }
+
+    public void addToCart() {
         productPage.addToCartButton.click();
     }
 
-    public void goToCart(){
+    public void goToCart() {
         productPage.Cart.click();
-
     }
 
-    public void Verify_QtyAndPrice(){
-        String qty= productPage.qtyOnCartPage.getText();
-        String[] textOfQty= qty.split(" ");
-        textOfQty[1]=textOfQty[1].substring(1,2);
+    public void Verify_QtyAndPrice(String quantity) {
+        String qty = productPage.qtyOnCartPage.getText();
 
-        int actual_qty= Integer.parseInt(textOfQty[1]);
+        int actual_qty = Integer.parseInt(qty);
         System.out.println(actual_qty);
+        Assert.assertEquals(qty,ConfigurationReader.get(quantity));
 
-        Assert.assertEquals(textOfQty,ConfigurationReader.get("firstSelectedQty"), "verify that qty:2");
 
-        String hatPrice= productPage.priceOfHat.getText();
-        hatPrice= hatPrice.substring(1);
+        String hatPrice = productPage.priceOfHat.getText();
+        hatPrice = hatPrice.substring(1);
 
-        double actualOneHatPrice= Double.parseDouble(hatPrice);
+        double actualOneHatPrice = Double.parseDouble(hatPrice);
         System.out.println(actualOneHatPrice);
 
-        double expectedPriceOfHat= actual_qty*actualOneHatPrice;
+        double totalPriceOfHat = actual_qty * actualOneHatPrice;
+        String expectedTotalPriceOfHat= Double.toString(totalPriceOfHat);
 
-        String totalPrice=productPage.totalPrice.getText();
-        totalPrice=totalPrice.substring(1);
-        double actualTotalPrice= Double.parseDouble(totalPrice);
-
-        Assert.assertEquals(actualTotalPrice,expectedPriceOfHat);
+        String totalPrice = productPage.totalPrice.getText();
+        totalPrice = totalPrice.substring(1);
+        double actualTotalPrice = Double.parseDouble(totalPrice);
         System.out.println(actualTotalPrice);
 
-    }
+        Assert.assertEquals(totalPrice, expectedTotalPriceOfHat);
 
-    public void reduceQuantity() throws InterruptedException {
-        select= new Select(productPage.dropDownOfQty);
-        Thread.sleep(2000);
-        select.selectByVisibleText(ConfigurationReader.get("changedQty"));
-    }
-
-    public void verifyChanged_QtyAndPrice(){
-        String qty= productPage.qtyOnCartPage.getText();
-        String[] textOfQty= qty.split(" ");
-        textOfQty[1]=textOfQty[1].substring(1,2);
-        int actual_qty= Integer.parseInt(textOfQty[1]);
-        System.out.println(actual_qty);
-        Assert.assertEquals(textOfQty,ConfigurationReader.get("changedQty"), "verify that qty:1");
 
     }
 

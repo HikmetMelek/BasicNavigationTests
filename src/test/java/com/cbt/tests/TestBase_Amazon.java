@@ -1,5 +1,6 @@
 package com.cbt.tests;
 
+import com.cbt.utilities.ConfigurationReader;
 import com.cbt.utilities.Driver;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +12,7 @@ import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestBase {
+public class TestBase_Amazon {
     protected WebDriver driver;
     protected Actions actions;
     protected WebDriverWait wait;
@@ -24,8 +25,7 @@ public class TestBase {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         actions=new Actions(driver);
         wait= new WebDriverWait(driver,30);
-
-
+        driver.get(ConfigurationReader.get("url1"));
 
     }
 
