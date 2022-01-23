@@ -1,5 +1,6 @@
 package com.cbt.tests.reviewWeekTasks;
 
+import com.cbt.pages.amazonPages.DashboardPage;
 import com.cbt.pages.amazonPages.ProductPage;
 import com.cbt.tests.TestBase_Amazon;
 import org.testng.annotations.Test;
@@ -17,14 +18,15 @@ public class Task1_Amazon extends TestBase_Amazon {
  */
 
     ProductPage productPage = new ProductPage();
+    DashboardPage dashboardPage= new DashboardPage();
 
     @Test
     public void amazon() throws InterruptedException {
-        productPage.searchForHat();
+        dashboardPage.searchForHat();
         productPage.selectHat();
         productPage.changeQuantity("firstSelectedQty");
         productPage.addToCart();
-        productPage.goToCart();
+        dashboardPage.goToCart();
         productPage.Verify_QtyAndPrice("firstSelectedQty");
         productPage.changeQuantity("changedQty");
         productPage.Verify_QtyAndPrice("changedQty");
