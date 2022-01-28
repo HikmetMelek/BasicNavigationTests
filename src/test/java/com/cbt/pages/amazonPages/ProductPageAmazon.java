@@ -8,10 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-public class ProductPage extends BasePage{
+public class ProductPageAmazon extends BasePage_amazon {
     Select select;
 
-    public ProductPage(){
+    public ProductPageAmazon(){
         PageFactory.initElements(Driver.get(),this);
     }
 
