@@ -5,8 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public abstract class BasePage {
-    public BasePage(){
+public abstract class BasePage_game {
+    public BasePage_game(){
         PageFactory.initElements(Driver.get(),this);
     }
 
