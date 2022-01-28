@@ -1,7 +1,7 @@
 package com.cbt.tests.reviewWeekTasks;
 
-import com.cbt.pages.amazonPages.DashboardPage;
-import com.cbt.pages.amazonPages.ProductPage;
+import com.cbt.pages.amazonPages.DashboardPageAmazon;
+import com.cbt.pages.amazonPages.ProductPageAmazon;
 import com.cbt.tests.TestBase_Amazon;
 import org.testng.annotations.Test;
 
@@ -17,8 +17,8 @@ public class Task1_Amazon extends TestBase_Amazon {
  but we'd like you to also demonstrate the coding quality, structure, and style of the deliverables.
  */
 
-    ProductPage productPage = new ProductPage();
-    DashboardPage dashboardPage= new DashboardPage();
+    ProductPageAmazon productPage = new ProductPageAmazon();
+    DashboardPageAmazon dashboardPage= new DashboardPageAmazon();
 
     @Test
     public void amazon() throws InterruptedException {
